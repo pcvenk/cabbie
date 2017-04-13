@@ -1,3 +1,5 @@
+const Driver = require('../models/driver');
+
 module.exports = {
 
   //  ES6 syntax
