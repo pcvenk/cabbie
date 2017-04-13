@@ -13,7 +13,7 @@ module.exports = {
   // },
 
   create(req, res) {
-      console.log(req.body);
-      res.send({hi: 'there'});
+      Driver.create(req.body)
+          .then(driver => res.send(driver));
   }
 };
