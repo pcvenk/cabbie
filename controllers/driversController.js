@@ -14,6 +14,12 @@ module.exports = {
 
   create(req, res) {
       Driver.create(req.body)
-          .then(driver => res.send(driver));
+          .then((err, driver) => {
+              if(err){
+                  res.send(err)
+              } else {
+                  res.send(driver);
+              }
+          });
   }
 };
