@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Driver = require('../models/driver');
 
 before(done => {
     mongoose.connect('mongodb://localhost/cabbie_test');
@@ -13,9 +14,22 @@ before(done => {
         });
 });
 
+// beforeEach(done => {
+//     // const drivers = mongoose.connection.collections.drivers;
+//     const { drivers } = mongoose.connection.collections;
+//     drivers.drop()
+//         .then(() => done())
+//         .catch(() => done());
+// });
+
 beforeEach(done => {
-    const { drivers } = mongoose.connection.collections;
-    drivers.drop()
+    Driver.remove({})
         .then(() => done())
         .catch(() => done());
 });
+//
+// beforeEach(done => {
+//     Driver.remove({}, () => {
+//         done();
+//     });
+// });
