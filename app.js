@@ -15,4 +15,9 @@ app.use(bodyParser.json());
 
 router(app);
 
+//middleware used with the request (.then & .catch)
+// app.use((err, req, res, next) => {
+//     console.log(err);
+// });
+
 module.exports = app;

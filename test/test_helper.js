@@ -10,23 +10,22 @@ before(done => {
         })
         .on('error', () => {
             console.warn(err);
-
         });
 });
 
-// beforeEach(done => {
-//     // const drivers = mongoose.connection.collections.drivers;
-//     const { drivers } = mongoose.connection.collections;
-//     drivers.drop()
-//         .then(() => done())
-//         .catch(() => done());
-// });
-
 beforeEach(done => {
-    Driver.remove({})
+    // const drivers = mongoose.connection.collections.drivers;
+    const { drivers } = mongoose.connection.collections;
+    drivers.drop()
         .then(() => done())
         .catch(() => done());
 });
+
+// beforeEach(done => {
+//     Driver.remove({})
+//         .then(() => done())
+//         .catch(() => done());
+// });
 //
 // beforeEach(done => {
 //     Driver.remove({}, () => {
