@@ -30,7 +30,7 @@ module.exports = {
         const driverId = req.params.id;
         const driverProps = req.body;
 
-        Driver.findByIdAndUpdate({_id: driverId}, driverProps)
+        Driver.findByIdAndUpdate({ _id: driverId }, driverProps)
             .then(() => Driver.findById({_id: driverId}))
             .then((updatedDriver) => res.send(updatedDriver))
             .catch(next);
@@ -38,8 +38,8 @@ module.exports = {
     delete(req, res, next) {
         const driverId = req.params.id;
 
-        Driver.findByAndRemove({_id: driverId})
-            .then((foundDriver) => res.status(204).send(foundDriver)
+        Driver.findByIdAndRemove({ _id: driverId })
+            .then((foundDriver) => res.status(204).send(foundDriver))
             .catch(next);
     }
 };
