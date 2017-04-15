@@ -34,6 +34,12 @@ module.exports = {
             .then(() => Driver.findById({_id: driverId}))
             .then((updatedDriver) => res.send(updatedDriver))
             .catch(next);
-    }
+    },
+    delete(req, res, next) {
+        const driverId = req.params.id;
 
+        Driver.findByAndRemove({_id: driverId})
+            .then((foundDriver) => res.status(204).send(foundDriver)
+            .catch(next);
+    }
 };
