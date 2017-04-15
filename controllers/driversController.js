@@ -27,10 +27,10 @@ module.exports = {
             .catch(next);
     },
     update(req, res, next) {
-        const driverId = req.body.params;
+        const driverId = req.params.id;
         const driverProps = req.body;
 
-        Driver.findByIdAndUpdate(driverId, driverProps)
+        Driver.findByIdAndUpdate({_id: driverId}, driverProps)
             .then(() => Driver.findById({_id: driverId}))
             .then((updatedDriver) => res.send(updatedDriver))
             .catch(next);

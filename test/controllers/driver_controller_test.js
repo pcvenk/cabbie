@@ -7,7 +7,7 @@ const app = require('../../app');
 
 
 describe('Driver controller', () => {
-    it('POST to /api/drivers creates a driver', (done) => {
+    it('POST to /api/driver creates a driver', (done) => {
         //no drivers created yet
         Driver.count()
             .then((result) => {
@@ -19,6 +19,25 @@ describe('Driver controller', () => {
                         Driver.count()
                             .then((newResult) => {
                                 assert(result + 1 === newResult);
+                                done();
+                            });
+                    });
+            });
+    });
+
+    it('PUT to /api/driver/:id updates a driver', (done) => {
+        const driver = new Driver({ email: 'test123@test.com', driving: false });
+
+        driver.save()
+            .then(() => {
+                request(app)
+                    // .put('/api/driver/'+driver._id)
+                    .put(`/api/driver/${driver._id}`)
+                    .send({ driving: true })
+                    .end(() => {
+                        Driver.findOne({ email: 'test123@test.com' })
+                            .then((foundDriver) => {
+                                assert(foundDriver.driving === true);
                                 done();
                             });
                     });
