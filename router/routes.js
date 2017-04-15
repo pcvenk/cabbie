@@ -5,4 +5,8 @@ module.exports = (app) => {
 
     //Create driver
     app.post('/api/driver', DriversController.create);
+
+    //Update driver
+    app.put('/api/driver/:id', DriversController.update);
+
 };
