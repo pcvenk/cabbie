@@ -41,5 +41,15 @@ module.exports = {
         Driver.findByIdAndRemove({ _id: driverId })
             .then((foundDriver) => res.status(204).send(foundDriver))
             .catch(next);
+    },
+    index(req, res, next) {
+        const {lng, lat} = req.query;
+        console.log(req.query);
+
+        Driver.geoNear(
+            { type: 'Point', coordinates: [lng, lat] },
+            { spherical: true, maxDistance: 200000 }
+        ).then(drivers => res.send(drivers))
+         .catch(next);
     }
 };
